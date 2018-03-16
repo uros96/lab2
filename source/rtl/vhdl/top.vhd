@@ -250,7 +250,14 @@ begin
   --dir_red
   --dir_green
   --dir_blue
- 
+	dir_red <= "00000000" when (dir_pixel_column<=160 or (dir_pixel_column>=400 and dir_pixel_column<=560))  else
+				"11111111";
+				
+	dir_green <= "00000000" when (dir_pixel_column<=80 or ((dir_pixel_column>=160 and dir_pixel_column<=240) or ((dir_pixel_column>=320 and dir_pixel_column<=400) or (dir_pixel_column>=480 and dir_pixel_column<=560)))) else
+						"11111111";
+						
+	dir_blue <= "00000000" when (dir_pixel_column<=80 or (dir_pixel_column>=240 and dir_pixel_column<=480)) else
+					"11111111";
   -- koristeci signale realizovati logiku koja pise po TXT_MEM
   --char_address
   --char_value
